@@ -1,1 +1,1 @@
-# pyonic-reader
+A python based PDF parser that rewrites all text in a special style referred to as being "bionic". This style includes making the initial letters of a word bold to help the neurodivergent with reading by improving the focus on the word itself. Bionic reading is not about helping in reading "faster" but "consistently with focus" which is a major issue with ADHDers. The main focus of this tool lies in converting PDFs which are a cornerstone of a student's life.
