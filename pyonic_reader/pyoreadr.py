@@ -12,11 +12,21 @@ def printhelp():
         args.print_help()
 
 def convertPdf(ratioStr, inpLoc, outDir):
+    break_storage = {}
+    bold_font = fitz.Font("cour")
     pdf_doc = fitz.open(inpLoc)
     for page in pdf_doc:
         for word in page.get_text("words"):
             white_rect = fitz.Rect(word[:4])
             page.add_redact_annot(white_rect, "", fill=(1,1,1), cross_out=False)
+            bold_str = word[4][:4]
+            norm_str = word[4][4:]
+            #x0, y1
+            bold_end_cord = bold_font.text_length(bold_str, 11)
+            page.insert_text(word[0],word[3], bold_str, fontsize=11,fontname="cour", color=(0,0,0))
+            page.insert_text(word[0]+bold_end_cord, word[3], norm_str, fontsize=11, fontname="helv", color=(0,0,0))
+            
+            
         page._apply_redactions(images=0, graphics=0, text=0)
     pdf_doc.save(outDir)
     #r = fitz.Rect(w[:4])
